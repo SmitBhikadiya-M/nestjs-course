@@ -1,18 +1,17 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { User } from "./user.entity";
-
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from './user.entity';
 
 @Entity()
-export class Todo{
-    @PrimaryGeneratedColumn()
-    id: number
+export class Todo {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    title: string
+  @Column()
+  title: string;
 
-    @Column()
-    isCompleted: boolean
+  @Column()
+  isCompleted: boolean;
 
-    @ManyToOne(type => User, user => user.todos)
-    owner: User
+  @ManyToOne((type) => User, (user) => user.todos)
+  owner: User;
 }
