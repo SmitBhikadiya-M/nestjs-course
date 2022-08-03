@@ -5,18 +5,7 @@ import { UpdateUserInput } from './dto/update-user.input';
 @Injectable()
 export class UsersService {
 
-  private readonly users = [
-    {
-      id:1,
-      username: 'Smit',
-      password: 'not-secure'
-    },
-    {
-      id:2,
-      username: 'Ankit',
-      password: 'not-not-secure'
-    }
-  ]
+  private readonly users = []
 
   create(createUserInput: CreateUserInput) {
     const user = {
