@@ -1,13 +1,20 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+generator nestgraphql {
+  provider               = "node node_modules/prisma-nestjs-graphql"
+  output                 = "../src/@generated/prisma-nestjs-graphql"
+  fields_Validator_from  = "class-validator"
+  fields_Validator_input = true
 }
 
 model Books {
@@ -18,7 +25,9 @@ model Books {
 }
 
 model Author {
-  id    Int     @id @default(autoincrement())
+  id Int @id @default(autoincrement())
+
+  /// @Validator.MinLength(3)
   name  String
   books Books[]
 }
