@@ -1,5 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
@@ -9,8 +8,8 @@ export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 
   @Post()
-  create(@Body() createBookDto: Prisma.BooksCreateInput) {
-    return this.booksService.create(createBookDto);
+  create(@Body(new ValidationPipe({transform: true})) createBookDto: CreateBookDto) {
+   return this.booksService.create(createBookDto);
   }
 
   @Get()
@@ -29,7 +28,7 @@ export class BooksController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.booksService.remove(+id);
+  remove(@Param('id', new ValidationPipe({transform: true})) id: number) {
+    return this.booksService.remove({id});
   }
 }
