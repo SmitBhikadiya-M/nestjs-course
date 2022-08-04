@@ -1,1 +1,6 @@
-export class CreateAuthorDto {}
+import { IsAlpha } from "class-validator";
+
+export class CreateAuthorDto {
+    @IsAlpha()
+    name: string
+}

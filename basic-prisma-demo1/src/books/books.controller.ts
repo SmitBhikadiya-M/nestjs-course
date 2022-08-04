@@ -9,9 +9,7 @@ export class BooksController {
 
   @Post()
   create(@Body(new ValidationPipe({transform: true})) createBookDto: CreateBookDto) {
-    console.log(createBookDto instanceof CreateBookDto);
-    
-    return this.booksService.create(createBookDto);
+   return this.booksService.create(createBookDto);
   }
 
   @Get()
