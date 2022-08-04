@@ -29,7 +29,9 @@ export class BooksService {
     });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} book`;
+  remove(where: Prisma.BooksWhereUniqueInput) {
+    return this.prisma.books.delete({
+      where
+    });
   }
 }
