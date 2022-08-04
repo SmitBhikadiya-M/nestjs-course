@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
 import { AuthorCreateInput } from 'src/@generated/prisma-nestjs-graphql/author/author-create.input';
 import { PrismaService } from 'src/prisma.service';
 import { UpdateAuthorDto } from './dto/update-author.dto';
